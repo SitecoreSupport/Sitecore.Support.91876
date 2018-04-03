@@ -91,7 +91,14 @@
           {
             if (Context.ClientPage.Modified)
             {
-              SheerResponse.CheckModified(true);
+              #region Modified code
+              //The fix: wait until saveUI pipeline finishes the work
+              CheckModifiedParameters parameters = new CheckModifiedParameters
+              {
+                ResumePreviousPipeline = true
+              };
+              SheerResponse.CheckModified(parameters);
+              #endregion
               args.WaitForPostBack();
               return;
             }
