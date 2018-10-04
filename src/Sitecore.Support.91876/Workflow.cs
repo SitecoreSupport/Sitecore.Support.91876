@@ -38,7 +38,7 @@
       Assert.IsNotNull(workflowState, "state");
       if (!workflow.GetCommands(workflowState.StateID).Any<WorkflowCommand>(a => (a.CommandID == commandId)))
       {
-        SheerResponse.Alert("The item has been moved to a different workflow state. Sitecore will therefore reload the item.", new string[0]);
+        SheerResponse.Alert("The item has been moved to a different workflow state. Sitecore will therefore reload the item.", Array.Empty<string>());
         Context.ClientPage.SendMessage(this, "item:refresh");
         return false;
       }
